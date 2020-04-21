@@ -1,13 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import Inicio from './pages/client/painel';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <h1>CURSO BÁSICO DE NODEJS COM REACTJS</h1>
-      </header>
+      </header> */}
+      <Inicio />
     </div>
   );
 }
