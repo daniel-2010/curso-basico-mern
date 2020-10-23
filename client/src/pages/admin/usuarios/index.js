@@ -61,7 +61,18 @@ export default function UsuariosListagem() {
       setUsuarios(response.data)
     }
     loadUsuarios();
-  },[])
+  },[]);
+
+  async function handleDelete(id){
+    if(window.confirm("Deseja realmente excluir este usuário?")){
+      var result = await api.delete('/api/usuarios/'+id);
+      if(result.status ===200){
+        window.location.href = '/admin/usuarios';
+      }else{
+        alert('Ocorreu um erro. Por favor, tente novamente!');
+      }
+    }
+  }
   
   return (
     <div className={classes.root}>
@@ -98,8 +109,8 @@ export default function UsuariosListagem() {
                             <TableCell align="center">{new Date(row.createdAt).toLocaleString('pt-br')}</TableCell>
                             <TableCell align="right">
                             <ButtonGroup aria-label="outlined primary button group">
-                              <Button color="primary">Atualizar</Button>
-                              <Button color="secondary">Excluir</Button>
+                              <Button color="primary" href={'/admin/usuarios/editar/'+row._id}>Atualizar</Button>
+                              <Button color="secondary" onClick={() => handleDelete(row._id)}>Excluir</Button>
                             </ButtonGroup>
                             </TableCell>
                           </TableRow>

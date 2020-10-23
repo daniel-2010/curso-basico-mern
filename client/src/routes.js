@@ -37,7 +37,7 @@ export default function Routes(){
 
                 <Route path="/admin/usuarios" exact component={Usuarios} />
                 <Route path="/admin/usuarios/cadastrar" exact component={UsuarioCadastrar} />
-                <Route path="/admin/usuarios/editar/:idProduto" exact component={UsuarioEditar} />
+                <Route path="/admin/usuarios/editar/:idUsuario" exact component={UsuarioEditar} />
 
             </Switch>
         </BrowserRouter>
