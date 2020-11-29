@@ -14,7 +14,9 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-
+import AddIcon from '@material-ui/icons/Add';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import SaveIcon from '@material-ui/icons/Save';
 import api from '../../../services/api';
 
 import { useParams } from 'react-router-dom';
@@ -24,9 +26,10 @@ const useStyles = makeStyles((theme) => ({
   title: {flexGrow: 1,},
   appBarSpacer: theme.mixins.toolbar,
   content: {flexGrow: 1,height: '100vh',overflow: 'auto',},
-  container: {paddingTop: theme.spacing(4),paddingBottom: theme.spacing(4),},
+  container: {paddingTop: theme.spacing(2),paddingBottom: theme.spacing(4),},
   paper: {padding: 35,display: 'flex',overflow: 'auto',flexDirection: 'column',},
-  formControl:{width:'100%'}
+  formControl:{width:'100%'},
+  btnSuccess:{ backgroundColor:"green",color:"#fff","&:hover":{backgroundColor:"#12b912"}}
 }));
 
 export default function UsuarioCadastrar() {
@@ -87,6 +90,11 @@ export default function UsuarioCadastrar() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item sm={12}>
+            <Button style={{marginBottom:10,marginRight:5}} variant="contained" href={'/admin/usuarios'}><ArrowBackIcon /> Voltar</Button>
+            <Button style={{marginBottom:10}} variant="contained" color="primary" href={'/admin/usuarios/cadastrar'}>
+              <AddIcon />
+              Cadastrar
+            </Button>
               <Paper className={classes.paper}>
                 <h2>Atualização de Usuários</h2>
                 <Grid container spacing={3}>
@@ -144,8 +152,8 @@ export default function UsuarioCadastrar() {
                     />
                   </Grid>
                   <Grid item xs={12} sm={12}>
-                  <Button variant="contained" onClick={handleSubmit} color="primary">
-                    Salvar
+                  <Button variant="contained"  onClick={handleSubmit} className={classes.btnSuccess}>
+                    <SaveIcon /> Salvar
                   </Button>
                   </Grid>
                 </Grid>

@@ -22,6 +22,9 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Chip from '@material-ui/core/Chip';
 import {getNomeTipo,getNomeTipoLabel} from '../../../functions/static_data'
+import AddIcon from '@material-ui/icons/Add';
+import AutorenewIcon from '@material-ui/icons/Autorenew';
+import ClearIcon from '@material-ui/icons/Clear';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
   },
   container: {
-    paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(4),
   },
   paper: {
@@ -57,13 +60,12 @@ export default function UsuariosListagem() {
   const [ loading, setLoading ] = useState(true);
 
   useEffect(() =>{
-    
     async function loadUsuarios(){
       const response = await api.get("/api/usuarios");
       setUsuarios(response.data)
       setLoading(false);
     }
-    setTimeout(() => loadUsuarios(),1000);
+    loadUsuarios();
   },[]);
 
   async function handleDelete(id){
@@ -86,6 +88,10 @@ export default function UsuariosListagem() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item sm={12}>
+            <Button style={{marginBottom:10}} variant="contained" color="primary" href={'/admin/usuarios/cadastrar'}>
+              <AddIcon />
+              Cadastrar
+            </Button>
             <Paper className={classes.paper}>
                 <h2>Listagem de Usuários</h2>
                 <Grid container spacing={3}>
@@ -113,8 +119,8 @@ export default function UsuariosListagem() {
                             <TableCell align="center">{new Date(row.createdAt).toLocaleString('pt-br')}</TableCell>
                             <TableCell align="right">
                             <ButtonGroup aria-label="outlined primary button group">
-                              <Button color="primary" href={'/admin/usuarios/editar/'+row._id}>Atualizar</Button>
-                              <Button color="secondary" onClick={() => handleDelete(row._id)}>Excluir</Button>
+                              <Button variant="contained" color="primary" href={'/admin/usuarios/editar/'+row._id}><AutorenewIcon /> Atualizar</Button>
+                              <Button variant="contained" color="secondary" onClick={() => handleDelete(row._id)}><ClearIcon /></Button>
                             </ButtonGroup>
                             </TableCell>
                           </TableRow>
